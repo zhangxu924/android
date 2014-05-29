@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="transparent">#00000000</drawable>
+    <color name="btn_cam">#000000</color>
+    <color name="tips_page_index">#666666</color>
+    <color name="tips_content">#666666</color>
+    <color name="bg_color">#ffffff</color>
+    <color name="tips_bottom_btn_disable">#ffffff</color>
+    <color name="progress_loading_color">#FFFFFF</color>
+</resources>

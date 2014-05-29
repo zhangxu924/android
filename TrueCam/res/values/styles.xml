@@ -17,4 +17,10 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <style name="btnLabel">
+        <item name="android:textColor">@color/btn_cam</item>
+        <item name="android:textSize">@dimen/btn_text_size</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+    
 </resources>
