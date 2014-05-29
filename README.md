@@ -1,6 +1,3 @@
-android
-=======
-
-personal project
-
-Jack you know what to do :)
+TrueCam
+=================
+anti-ps camera implemented in android
