@@ -21,6 +21,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.truecam.utils.Checksum;
+import com.example.truecam.utils.EncrypteUtils;
+
 public class TrueCamActivity extends Activity {
 
 	private View mTrueCamView;
@@ -109,7 +112,16 @@ public class TrueCamActivity extends Activity {
 			Log.d("MyCameraApp", "cam activity resulted");
 			if (resultCode == RESULT_OK) {
 				String filename = outFile.getAbsolutePath();
-				Bitmap bitmap = BitmapFactory.decodeFile(filename);
+				String fileEncryptName = filename + "-encrypt";
+				String fileDecryptName = filename + "-decrypt";
+				try {
+					EncrypteUtils.encrypt(filename, fileEncryptName);
+					EncrypteUtils.decrypt(fileEncryptName, fileDecryptName);
+				} catch (Exception e) {
+
+				}
+
+				Bitmap bitmap = BitmapFactory.decodeFile(fileDecryptName);
 				Checksum cksumObj = new Checksum();
 				String cks = cksumObj.create(filename);
 				Log.d("MyCameraApp", "checksum is: " + cks);
@@ -126,7 +138,6 @@ public class TrueCamActivity extends Activity {
 				} else {
 					Log.d("MyCameraApp", "file corrupted");
 				}
-
 			} else if (resultCode == RESULT_CANCELED) {
 				// User cancelled the image capture
 			} else {
@@ -139,8 +150,5 @@ public class TrueCamActivity extends Activity {
 		return false;
 	}
 
-	private void EncryptImg() {
-
-	}
 
 }
