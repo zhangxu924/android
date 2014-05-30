@@ -6,6 +6,10 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -23,6 +27,8 @@ public class TrueCamActivity extends Activity {
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	public static final int MEDIA_TYPE_IMAGE = 1;
 	public static final int MEDIA_TYPE_VIDEO = 2;
+	private File outFile;
+	private Uri fileUri;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d("MyCameraApp", "Init truecam.... ");
@@ -38,7 +44,8 @@ public class TrueCamActivity extends Activity {
 				case R.id.btn_take_pic: {
 					Log.d("MyCameraApp", "clicked button to launch camera");
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					Uri fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+					outFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
+					fileUri = Uri.fromFile(outFile);
 					intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 					startActivityForResult(intent,
 							CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
@@ -101,16 +108,39 @@ public class TrueCamActivity extends Activity {
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			Log.d("MyCameraApp", "cam activity resulted");
 			if (resultCode == RESULT_OK) {
-				// Image captured and saved to fileUri specified in the Intent
-				Toast.makeText(this,
- "Image saved to local directory",
-						Toast.LENGTH_LONG).show();
+				String filename = outFile.getAbsolutePath();
+				Bitmap bitmap = BitmapFactory.decodeFile(filename);
+				Checksum cksumObj = new Checksum();
+				String cks = cksumObj.create(filename);
+				Log.d("MyCameraApp", "checksum is: " + cks);
+				if (cksumObj.check(filename, cks) == 1) {
+					Matrix matrix = new Matrix();
+					matrix.postRotate(90);
+					Bitmap rotatedBitmap = Bitmap
+							.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+									bitmap.getHeight(), matrix, true);
+					mTrueCamView.setBackground(new BitmapDrawable(
+							getResources(), rotatedBitmap));
+					Toast.makeText(this, "Image saved to local directory",
+							Toast.LENGTH_LONG).show();
+				} else {
+					Log.d("MyCameraApp", "file corrupted");
+				}
+
 			} else if (resultCode == RESULT_CANCELED) {
 				// User cancelled the image capture
 			} else {
 				// Image capture failed, advise user
 			}
 		}
+	}
+
+	private boolean uploadImg(int imgId) {
+		return false;
+	}
+
+	private void EncryptImg() {
+
 	}
 
 }
