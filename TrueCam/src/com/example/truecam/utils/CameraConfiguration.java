@@ -1,14 +1,5 @@
 package com.example.truecam.utils;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.hardware.Camera;
-import android.os.Environment;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
-import android.view.WindowManager;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,6 +9,14 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import android.content.Context;
+import android.graphics.Point;
+import android.hardware.Camera;
+import android.os.Environment;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.WindowManager;
 
 import com.example.truecam.TrueCamActivity;
 
@@ -63,7 +62,7 @@ public class CameraConfiguration {
         Point cameraResolution = findBestPreviewResolution();
 
         Log.d(TAG, "set the preview size=" + cameraResolution);
-        cameraParameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
+		cameraParameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
         camera.setParameters(cameraParameters);
 
         Camera.Parameters afterParameters = camera.getParameters();
@@ -135,6 +134,39 @@ public class CameraConfiguration {
     }
 
 
+
+
+	/** Create a File for saving an image or video */
+	public File getOutputMediaFile() throws Exception {
+		// To be safe, you should check that the SDCard is mounted
+		// using Environment.getExternalStorageState() before doing this.
+		if (!Environment.MEDIA_MOUNTED.equals(Environment
+				.getExternalStorageState())) {
+			throw new Exception("no sdcard found or can't write in the sdcard!");
+		}
+		File mediaStorageDir = new File(
+				Environment
+						.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+				"MyCameraApp");
+		// This location works best if you want the created images to be shared
+		// between applications and persist after your app has been uninstalled.
+
+		// Create the storage directory if it does not exist
+		if (!mediaStorageDir.exists()) {
+			if (!mediaStorageDir.mkdirs()) {
+				Log.d(TAG, "failed to create directory");
+				return null;
+			}
+		}
+
+		// Create a media file name
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+				.format(new Date());
+		File mediaFile;
+		mediaFile = new File(mediaStorageDir.getPath() + File.separator
+				+ "IMG_" + timeStamp + ".encrypt");
+		return mediaFile;
+	}
 
     private Point findBestPreviewResolution() {
         Camera.Size defaultPreviewResolution = cameraParameters.getPreviewSize();
@@ -220,7 +252,8 @@ public class CameraConfiguration {
 
 
     private Point findBestPictureResolution() {
-        List<Camera.Size> supportedPicResolutions = cameraParameters.getSupportedPictureSizes(); // 至少会返回一个值
+		List<Camera.Size> supportedPicResolutions = cameraParameters
+				.getSupportedPictureSizes();
 
         StringBuilder picResolutionSb = new StringBuilder();
         for (Camera.Size supportedPicResolution : supportedPicResolutions) {

@@ -15,7 +15,7 @@ public class AutoFocusManager extends Thread implements Camera.AutoFocusCallback
     public AutoFocusManager(Camera camera) {
         this.camera = camera;
     }
-
+ 
     public synchronized void startAutoFocus() {
         if (!isActive) {
             isActive = true;

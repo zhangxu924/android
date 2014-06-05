@@ -41,6 +41,24 @@ public class EncrypteUtils {
 		cos.close();
 		fis.close();
 	}
+	
+	public static void encrypt(byte[] dataInput, String fileOutput)
+			throws IOException, NoSuchAlgorithmException,
+			NoSuchPaddingException, InvalidKeyException {
+		FileOutputStream fos = new FileOutputStream(fileOutput);
+
+		// Length is 16 byte, the key here needs to be taken care of
+		SecretKeySpec sks = new SecretKeySpec("MyDifficultPassw".getBytes(),
+				"AES");
+		// Create cipher
+		Cipher cipher = Cipher.getInstance("AES");
+		cipher.init(Cipher.ENCRYPT_MODE, sks);
+		// Wrap the output stream
+		CipherOutputStream cos = new CipherOutputStream(fos, cipher);
+		cos.write(dataInput, 0, dataInput.length);
+		cos.flush();
+		cos.close();
+	}
 
 	public static void decrypt(String fileInput, String fileOutput)
 			throws IOException, NoSuchAlgorithmException,
