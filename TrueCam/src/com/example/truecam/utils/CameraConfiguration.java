@@ -1,14 +1,5 @@
 package com.example.truecam.utils;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.hardware.Camera;
-import android.os.Environment;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
-import android.view.WindowManager;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,6 +9,14 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import android.content.Context;
+import android.graphics.Point;
+import android.hardware.Camera;
+import android.os.Environment;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.WindowManager;
 
 import com.example.truecam.TrueCamActivity;
 
@@ -63,7 +62,7 @@ public class CameraConfiguration {
         Point cameraResolution = findBestPreviewResolution();
 
         Log.d(TAG, "set the preview size=" + cameraResolution);
-        cameraParameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
+		cameraParameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
         camera.setParameters(cameraParameters);
 
         Camera.Parameters afterParameters = camera.getParameters();
@@ -220,7 +219,8 @@ public class CameraConfiguration {
 
 
     private Point findBestPictureResolution() {
-        List<Camera.Size> supportedPicResolutions = cameraParameters.getSupportedPictureSizes(); // 至少会返回一个值
+		List<Camera.Size> supportedPicResolutions = cameraParameters
+				.getSupportedPictureSizes();
 
         StringBuilder picResolutionSb = new StringBuilder();
         for (Camera.Size supportedPicResolution : supportedPicResolutions) {

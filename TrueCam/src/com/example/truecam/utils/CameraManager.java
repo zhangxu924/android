@@ -1,5 +1,10 @@
 package com.example.truecam.utils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Camera;
@@ -13,11 +18,6 @@ import android.view.SurfaceView;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import com.example.truecam.TrueCamActivity;
 
@@ -87,7 +87,7 @@ public class CameraManager {
 
         configuration.config(camera);
         cameraPreview.startPreview();
-        orientationEventListener.enable();
+		orientationEventListener.enable();
 
         return camera;
     }
@@ -152,7 +152,8 @@ public class CameraManager {
         protected void onPostExecute(File pictureFile) {
             super.onPostExecute(pictureFile);
 
-            Toast.makeText(mTrueCamActivity, "图片保存图库成功！", Toast.LENGTH_SHORT).show();
+			Toast.makeText(mTrueCamActivity, "picture saved in local storage",
+					Toast.LENGTH_SHORT).show();
             Log.d(TAG, "the picture saved in " + pictureFile.getAbsolutePath());
 
             camera.startPreview();
@@ -166,7 +167,8 @@ public class CameraManager {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
             if (null == data || data.length == 0) {
-                Toast.makeText(mTrueCamActivity, "拍照失败，请重试！", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mTrueCamActivity, "failed taking picture",
+						Toast.LENGTH_SHORT).show();
 
                 Log.e(TAG, "No media data returned");
                 return;
@@ -262,9 +264,7 @@ public class CameraManager {
         }
     }
 
-    /**
-     * 固定portrait模式下，无需调用此函数
-     */
+
     private void setCameraDisplayOrientation() {
         Camera.CameraInfo info = new Camera.CameraInfo();
         Camera.getCameraInfo(facing, info);
@@ -340,11 +340,11 @@ public class CameraManager {
         }
 
         @Override
-        public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int w, int h) {
+		public void surfaceChanged(SurfaceHolder surfaceHolder, int format,
+				int width, int height) {
             if (surfaceHolder.getSurface() == null) {
                 return;
             }
-
             stopPreview();
             startPreview();
         }

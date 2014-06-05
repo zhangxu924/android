@@ -1,9 +1,7 @@
 package com.example.truecam;
 
 import android.app.Activity;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.animation.Animation;
@@ -29,11 +27,11 @@ public class TrueCamActivity extends Activity implements Button.OnClickListener 
         setContentView(R.layout.truecam_layout);
 
         ivShutter = (ImageView) findViewById(R.id.mc_shutter);
-        ivCameraSwitcher = (ImageView) findViewById(R.id.mc_facing_switcher);
+		// ivCameraSwitcher = (ImageView) findViewById(R.id.mc_facing_switcher);
         previewLayout = (SurfaceView) findViewById(R.id.mc_preview);
 
         ivShutter.setOnClickListener(this);
-        ivCameraSwitcher.setOnClickListener(this);
+		// ivCameraSwitcher.setOnClickListener(this);
 
         cameraManager = new CameraManager(this, previewLayout, btAnimation);
     }
@@ -64,10 +62,10 @@ public class TrueCamActivity extends Activity implements Button.OnClickListener 
                 cameraManager.takePicture();
 
                 break;
-            case R.id.mc_facing_switcher:
-                cameraManager.switchCamera();
+			// case R.id.mc_facing_switcher:
+			// cameraManager.switchCamera();
 
-                break;
+		// break;
         }
     }
 
@@ -77,7 +75,7 @@ public class TrueCamActivity extends Activity implements Button.OnClickListener 
         @Override
         public void executeAnimation(Animation animation) {
             ivShutter.startAnimation(animation);
-            ivCameraSwitcher.startAnimation(animation);
+			// ivCameraSwitcher.startAnimation(animation);
         }
     };
     
