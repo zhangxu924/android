@@ -1,0 +1,13 @@
+note left of Client: take a photo and get position
+Client->Client: encrypt photo and get MD5
+Client->Client: encrypt position and get MD5
+
+
+Client->+Server: send photo MD5 and position MD5
+Server->DB: create record
+note right of Client: API 1
+Server-->-Client: return photo ID
+
+Client->+Server: send encrypted photo with photo ID
+note right of Client: API 2
+Server-->-Client: OK/Error Code
