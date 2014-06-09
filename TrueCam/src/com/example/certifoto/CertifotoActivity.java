@@ -1,4 +1,4 @@
-package com.example.truecam;
+package com.example.certifoto;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,12 +8,13 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.truecam.utils.CameraManager;
-import com.example.truecam.utils.MyCameraButtonAnimation;
+import com.example.certifoto.utils.CameraManager;
+import com.example.certifoto.utils.MyCameraButtonAnimation;
+import com.example.truecam.R;
 
 
 
-public class TrueCamActivity extends Activity implements
+public class CertifotoActivity extends Activity implements
 		Button.OnClickListener {
     public static final String TAG = "mycamera";
 
@@ -25,7 +26,7 @@ public class TrueCamActivity extends Activity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.truecam_layout);
+		setContentView(R.layout.certifoto_layout);
 
         ivShutter = (ImageView) findViewById(R.id.mc_shutter);
 		// ivCameraSwitcher = (ImageView) findViewById(R.id.mc_facing_switcher);

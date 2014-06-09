@@ -1,13 +1,13 @@
-package com.example.truecam.utils;
+package com.example.certifoto.utils;
 
-import com.example.truecam.TrueCamActivity;
+import com.example.certifoto.CertifotoActivity;
 
 import android.hardware.Camera;
 import android.util.Log;
 
 
 public class AutoFocusManager extends Thread implements Camera.AutoFocusCallback {
-    private static final String TAG = TrueCamActivity.TAG;
+    private static final String TAG = CertifotoActivity.TAG;
     private static final long AUTO_FOCUS_INTERVAL_MS = 5000L;
     private Camera camera;
     private boolean isActive = false;

@@ -1,4 +1,4 @@
-package com.example.truecam.utils;
+package com.example.certifoto.utils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -18,12 +18,12 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
 
-import com.example.truecam.TrueCamActivity;
+import com.example.certifoto.CertifotoActivity;
 
 
 public class CameraConfiguration {
 
-    private static final String TAG = TrueCamActivity.TAG;
+    private static final String TAG = CertifotoActivity.TAG;
 
     private Camera.Parameters cameraParameters;
 

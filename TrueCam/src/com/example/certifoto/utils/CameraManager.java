@@ -1,4 +1,4 @@
-package com.example.truecam.utils;
+package com.example.certifoto.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,18 +22,18 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Toast;
 
+import com.example.certifoto.CertifotoActivity;
 import com.example.truecam.R;
-import com.example.truecam.TrueCamActivity;
 
 
 public class CameraManager {
-    private static final String TAG = TrueCamActivity.TAG;
+    private static final String TAG = CertifotoActivity.TAG;
 
     private Camera camera;
 
 
     private int facing;
-    private TrueCamActivity mTrueCamActivity;
+	private CertifotoActivity mCertifotoActivity;
     private CameraConfiguration configuration;
     private CameraPreview cameraPreview;
     private MyOrientationEventListener orientationEventListener;
@@ -49,8 +49,8 @@ public class CameraManager {
 
     private SurfaceView surfaceView;
 
-    public CameraManager(TrueCamActivity cameraActivity, SurfaceView surfaceView, MyCameraButtonAnimation buttonAnimation) {
-        mTrueCamActivity = cameraActivity;
+    public CameraManager(CertifotoActivity cameraActivity, SurfaceView surfaceView, MyCameraButtonAnimation buttonAnimation) {
+		mCertifotoActivity = cameraActivity;
         configuration = new CameraConfiguration(cameraActivity);
         facing = Camera.CameraInfo.CAMERA_FACING_BACK;
         this.surfaceView = surfaceView;
@@ -154,7 +154,7 @@ public class CameraManager {
                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
                 Uri contentUri = Uri.fromFile(pictureFile);
                 mediaScanIntent.setData(contentUri);
-                mTrueCamActivity.sendBroadcast(mediaScanIntent);
+				mCertifotoActivity.sendBroadcast(mediaScanIntent);
             } catch (FileNotFoundException e) {
                 Log.d(TAG, "File not found: " + e.getMessage());
             } catch (IOException e) {
@@ -162,7 +162,7 @@ public class CameraManager {
 			} catch (Exception e) {
 				Log.d(TAG, "Error encrypting file: " + e.getMessage());
             }
-			LocationManager locationManager = (LocationManager) mTrueCamActivity
+			LocationManager locationManager = (LocationManager) mCertifotoActivity
 					.getSystemService(Context.LOCATION_SERVICE);
 
 			final boolean gpsEnabled = locationManager
@@ -182,15 +182,16 @@ public class CameraManager {
 		private void enableLocationSettings() {
 			Intent settingsIntent = new Intent(
 					Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			mTrueCamActivity.startActivity(settingsIntent);
+			mCertifotoActivity.startActivity(settingsIntent);
 		}
 
         @Override
         protected void onPostExecute(File pictureFile) {
             super.onPostExecute(pictureFile);
-			mTrueCamActivity.findViewById(R.id.mc_progressbar).setVisibility(
+			mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
 					View.INVISIBLE);
-			Toast.makeText(mTrueCamActivity, "picture saved in local storage",
+			Toast.makeText(mCertifotoActivity,
+					"picture saved in local storage",
 					Toast.LENGTH_SHORT).show();
 			Log.d(TAG, "the picture saved in " + pictureFile.getAbsolutePath());
         }
@@ -198,7 +199,7 @@ public class CameraManager {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			mTrueCamActivity.findViewById(R.id.mc_progressbar).setVisibility(
+			mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
 					View.VISIBLE);
 		}
     }
@@ -210,7 +211,7 @@ public class CameraManager {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
             if (null == data || data.length == 0) {
-				Toast.makeText(mTrueCamActivity, "failed taking picture",
+				Toast.makeText(mCertifotoActivity, "failed taking picture",
 						Toast.LENGTH_SHORT).show();
 
                 Log.e(TAG, "No media data returned");
@@ -218,7 +219,7 @@ public class CameraManager {
             }
 
             new PicSaveTask().execute(data);
-			Toast.makeText(mTrueCamActivity, "processing picture",
+			Toast.makeText(mCertifotoActivity, "processing picture",
 					Toast.LENGTH_SHORT).show();
 			camera.startPreview();
 
@@ -315,7 +316,8 @@ public class CameraManager {
     private void setCameraDisplayOrientation() {
         Camera.CameraInfo info = new Camera.CameraInfo();
         Camera.getCameraInfo(facing, info);
-        int rotation = mTrueCamActivity.getWindowManager().getDefaultDisplay().getRotation();
+		int rotation = mCertifotoActivity.getWindowManager()
+				.getDefaultDisplay().getRotation();
 
         Log.d(TAG, "[1492]rotation=" + rotation);
 

@@ -1,4 +1,4 @@
-package com.example.truecam.utils;
+package com.example.certifoto.utils;
 
 import android.view.animation.Animation;
 
