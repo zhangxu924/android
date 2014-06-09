@@ -7,17 +7,22 @@ import java.io.IOException;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Camera;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.OrientationEventListener;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Toast;
 
+import com.example.truecam.R;
 import com.example.truecam.TrueCamActivity;
 
 
@@ -135,12 +140,17 @@ public class CameraManager {
 				// FileOutputStream fos = new FileOutputStream(pictureFile);
 				// fos.write(data);
 				// fos.close();
-					EncrypteUtils.encrypt(data,
-							encrytedFile.getAbsolutePath());
-					EncrypteUtils.decrypt(encrytedFile.getAbsolutePath(),
-							pictureFile.getAbsolutePath());
-
-
+				Checksum cksum = new Checksum();
+				String cks = cksum.create(data);
+				EncrypteUtils.encrypt(data, encrytedFile.getAbsolutePath());
+				EncrypteUtils.decrypt(encrytedFile.getAbsolutePath(),
+						pictureFile.getAbsolutePath());
+					Log.d(TAG, "checksum is: " + cks);
+					if (cksum.check(pictureFile.getAbsolutePath(), cks) == 1) {
+					Log.d(TAG, "file is still valid after decryption");
+				} else {
+					Log.d(TAG, "file is currupted");
+				}
                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
                 Uri contentUri = Uri.fromFile(pictureFile);
                 mediaScanIntent.setData(contentUri);
@@ -152,20 +162,45 @@ public class CameraManager {
 			} catch (Exception e) {
 				Log.d(TAG, "Error encrypting file: " + e.getMessage());
             }
+			LocationManager locationManager = (LocationManager) mTrueCamActivity
+					.getSystemService(Context.LOCATION_SERVICE);
 
+			final boolean gpsEnabled = locationManager
+					.isProviderEnabled(LocationManager.GPS_PROVIDER);
+			if (!gpsEnabled) {
+				enableLocationSettings();
+			} else {
+				Location location = locationManager
+						.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+				double latitude = location.getLatitude();
+				double longitude = location.getLongitude();
+				Log.d(TAG, "latitude " + latitude + "  longitude:" + longitude);
+			}
             return pictureFile;
         }
+
+		private void enableLocationSettings() {
+			Intent settingsIntent = new Intent(
+					Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+			mTrueCamActivity.startActivity(settingsIntent);
+		}
 
         @Override
         protected void onPostExecute(File pictureFile) {
             super.onPostExecute(pictureFile);
-
+			mTrueCamActivity.findViewById(R.id.mc_progressbar).setVisibility(
+					View.INVISIBLE);
 			Toast.makeText(mTrueCamActivity, "picture saved in local storage",
 					Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "the picture saved in " + pictureFile.getAbsolutePath());
-
-            camera.startPreview();
+			Log.d(TAG, "the picture saved in " + pictureFile.getAbsolutePath());
         }
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			mTrueCamActivity.findViewById(R.id.mc_progressbar).setVisibility(
+					View.VISIBLE);
+		}
     }
 
     ;
@@ -183,6 +218,10 @@ public class CameraManager {
             }
 
             new PicSaveTask().execute(data);
+			Toast.makeText(mTrueCamActivity, "processing picture",
+					Toast.LENGTH_SHORT).show();
+			camera.startPreview();
+
         }
     };
 

@@ -13,11 +13,12 @@ import com.example.truecam.utils.MyCameraButtonAnimation;
 
 
 
-public class TrueCamActivity extends Activity implements Button.OnClickListener {
+public class TrueCamActivity extends Activity implements
+		Button.OnClickListener {
     public static final String TAG = "mycamera";
 
     private ImageView ivShutter;
-    private ImageView ivCameraSwitcher;
+	// private ImageView ivCameraSwitcher;
     private CameraManager cameraManager;
     private SurfaceView previewLayout;
 
@@ -78,24 +79,4 @@ public class TrueCamActivity extends Activity implements Button.OnClickListener 
 			// ivCameraSwitcher.startAnimation(animation);
         }
     };
-    
-     
 }
-
-
-
-
-//				Checksum cksumObj = new Checksum();
-//				String cks = cksumObj.create(filename);
-//				Log.d(TAG, "checksum is: " + cks);
-//				if (cksumObj.check(filename, cks) == 1) {
-//					Matrix matrix = new Matrix();
-//					matrix.postRotate(90);
-// Bitmap bitmap = BitmapFactory.decodeFile(fileDecryptName);
-//					Bitmap rotatedBitmap = Bitmap
-//							.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-//									bitmap.getHeight(), matrix, true);
-//					mTrueCamView.setBackground(new BitmapDrawable(
-//							getResources(), rotatedBitmap));
-
-
