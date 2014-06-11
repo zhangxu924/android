@@ -1,4 +1,4 @@
-package com.example.truecam.utils;
+package com.example.certifoto.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,28 +7,33 @@ import java.io.IOException;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Camera;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.OrientationEventListener;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Toast;
 
-import com.example.truecam.TrueCamActivity;
+import com.example.certifoto.CertifotoActivity;
+import com.example.truecam.R;
 
 
 public class CameraManager {
-    private static final String TAG = TrueCamActivity.TAG;
+    private static final String TAG = CertifotoActivity.TAG;
 
     private Camera camera;
 
 
     private int facing;
-    private TrueCamActivity mTrueCamActivity;
+	private CertifotoActivity mCertifotoActivity;
     private CameraConfiguration configuration;
     private CameraPreview cameraPreview;
     private MyOrientationEventListener orientationEventListener;
@@ -44,8 +49,8 @@ public class CameraManager {
 
     private SurfaceView surfaceView;
 
-    public CameraManager(TrueCamActivity cameraActivity, SurfaceView surfaceView, MyCameraButtonAnimation buttonAnimation) {
-        mTrueCamActivity = cameraActivity;
+    public CameraManager(CertifotoActivity cameraActivity, SurfaceView surfaceView, MyCameraButtonAnimation buttonAnimation) {
+		mCertifotoActivity = cameraActivity;
         configuration = new CameraConfiguration(cameraActivity);
         facing = Camera.CameraInfo.CAMERA_FACING_BACK;
         this.surfaceView = surfaceView;
@@ -135,16 +140,21 @@ public class CameraManager {
 				// FileOutputStream fos = new FileOutputStream(pictureFile);
 				// fos.write(data);
 				// fos.close();
-					EncrypteUtils.encrypt(data,
-							encrytedFile.getAbsolutePath());
-					EncrypteUtils.decrypt(encrytedFile.getAbsolutePath(),
-							pictureFile.getAbsolutePath());
-
-
+				Checksum cksum = new Checksum();
+				String cks = cksum.create(data);
+				EncrypteUtils.encrypt(data, encrytedFile.getAbsolutePath());
+				EncrypteUtils.decrypt(encrytedFile.getAbsolutePath(),
+						pictureFile.getAbsolutePath());
+					Log.d(TAG, "checksum is: " + cks);
+					if (cksum.check(pictureFile.getAbsolutePath(), cks) == 1) {
+					Log.d(TAG, "file is still valid after decryption");
+				} else {
+					Log.d(TAG, "file is currupted");
+				}
                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
                 Uri contentUri = Uri.fromFile(pictureFile);
                 mediaScanIntent.setData(contentUri);
-                mTrueCamActivity.sendBroadcast(mediaScanIntent);
+				mCertifotoActivity.sendBroadcast(mediaScanIntent);
             } catch (FileNotFoundException e) {
                 Log.d(TAG, "File not found: " + e.getMessage());
             } catch (IOException e) {
@@ -152,20 +162,46 @@ public class CameraManager {
 			} catch (Exception e) {
 				Log.d(TAG, "Error encrypting file: " + e.getMessage());
             }
+			LocationManager locationManager = (LocationManager) mCertifotoActivity
+					.getSystemService(Context.LOCATION_SERVICE);
 
+			final boolean gpsEnabled = locationManager
+					.isProviderEnabled(LocationManager.GPS_PROVIDER);
+			if (!gpsEnabled) {
+				enableLocationSettings();
+			} else {
+				Location location = locationManager
+						.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+				double latitude = location.getLatitude();
+				double longitude = location.getLongitude();
+				Log.d(TAG, "latitude " + latitude + "  longitude:" + longitude);
+			}
             return pictureFile;
         }
+
+		private void enableLocationSettings() {
+			Intent settingsIntent = new Intent(
+					Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+			mCertifotoActivity.startActivity(settingsIntent);
+		}
 
         @Override
         protected void onPostExecute(File pictureFile) {
             super.onPostExecute(pictureFile);
-
-			Toast.makeText(mTrueCamActivity, "picture saved in local storage",
+			mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
+					View.INVISIBLE);
+			Toast.makeText(mCertifotoActivity,
+					"picture saved in local storage",
 					Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "the picture saved in " + pictureFile.getAbsolutePath());
-
-            camera.startPreview();
+			Log.d(TAG, "the picture saved in " + pictureFile.getAbsolutePath());
         }
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
+					View.VISIBLE);
+		}
     }
 
     ;
@@ -175,7 +211,7 @@ public class CameraManager {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
             if (null == data || data.length == 0) {
-				Toast.makeText(mTrueCamActivity, "failed taking picture",
+				Toast.makeText(mCertifotoActivity, "failed taking picture",
 						Toast.LENGTH_SHORT).show();
 
                 Log.e(TAG, "No media data returned");
@@ -183,6 +219,10 @@ public class CameraManager {
             }
 
             new PicSaveTask().execute(data);
+			Toast.makeText(mCertifotoActivity, "processing picture",
+					Toast.LENGTH_SHORT).show();
+			camera.startPreview();
+
         }
     };
 
@@ -276,7 +316,8 @@ public class CameraManager {
     private void setCameraDisplayOrientation() {
         Camera.CameraInfo info = new Camera.CameraInfo();
         Camera.getCameraInfo(facing, info);
-        int rotation = mTrueCamActivity.getWindowManager().getDefaultDisplay().getRotation();
+		int rotation = mCertifotoActivity.getWindowManager()
+				.getDefaultDisplay().getRotation();
 
         Log.d(TAG, "[1492]rotation=" + rotation);
 

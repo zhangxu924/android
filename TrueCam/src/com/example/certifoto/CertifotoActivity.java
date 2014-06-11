@@ -1,4 +1,4 @@
-package com.example.truecam;
+package com.example.certifoto;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,23 +8,25 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.truecam.utils.CameraManager;
-import com.example.truecam.utils.MyCameraButtonAnimation;
+import com.example.certifoto.utils.CameraManager;
+import com.example.certifoto.utils.MyCameraButtonAnimation;
+import com.example.truecam.R;
 
 
 
-public class TrueCamActivity extends Activity implements Button.OnClickListener {
+public class CertifotoActivity extends Activity implements
+		Button.OnClickListener {
     public static final String TAG = "mycamera";
 
     private ImageView ivShutter;
-    private ImageView ivCameraSwitcher;
+	// private ImageView ivCameraSwitcher;
     private CameraManager cameraManager;
     private SurfaceView previewLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.truecam_layout);
+		setContentView(R.layout.certifoto_layout);
 
         ivShutter = (ImageView) findViewById(R.id.mc_shutter);
 		// ivCameraSwitcher = (ImageView) findViewById(R.id.mc_facing_switcher);
@@ -78,24 +80,4 @@ public class TrueCamActivity extends Activity implements Button.OnClickListener 
 			// ivCameraSwitcher.startAnimation(animation);
         }
     };
-    
-     
 }
-
-
-
-
-//				Checksum cksumObj = new Checksum();
-//				String cks = cksumObj.create(filename);
-//				Log.d(TAG, "checksum is: " + cks);
-//				if (cksumObj.check(filename, cks) == 1) {
-//					Matrix matrix = new Matrix();
-//					matrix.postRotate(90);
-// Bitmap bitmap = BitmapFactory.decodeFile(fileDecryptName);
-//					Bitmap rotatedBitmap = Bitmap
-//							.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-//									bitmap.getHeight(), matrix, true);
-//					mTrueCamView.setBackground(new BitmapDrawable(
-//							getResources(), rotatedBitmap));
-
-

@@ -1,4 +1,4 @@
-package com.example.truecam.utils;
+package com.example.certifoto.utils;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -23,10 +23,39 @@ public class Checksum {
 		}
 	}
 
+	public String create(byte[] data) {
+		try {
+			byte[] chk = createChecksum(data);
+			return new String(chk);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "create checksum failed";
+		}
+	}
+
 	public int check(String filename, String checksum) {
 		int rc = 0;
 		try {
 			byte[] chk = createChecksum(filename);
+			Log.d("MyCameraApp", "checksum is: " + new String(chk));
+			if (new String(chk).equals(checksum)) {
+				System.out.println("Same!");
+				rc = 1;
+			} else {
+				System.out.println("Different!");
+				rc = 2;
+			}
+			return rc;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return rc;
+		}
+	}
+
+	public int check(byte[] data, String checksum) {
+		int rc = 0;
+		try {
+			byte[] chk = createChecksum(data);
 			Log.d("MyCameraApp", "checksum is: " + new String(chk));
 			if (new String(chk).equals(checksum)) {
 				System.out.println("Same!");
@@ -57,4 +86,16 @@ public class Checksum {
 		fis.close();
 		return complete.digest();
 	}
+
+	public byte[] createChecksum(byte[] data) throws Exception {
+		MessageDigest complete = MessageDigest.getInstance("MD5");
+		int numRead = 0;
+		while (numRead < data.length) {
+			complete.update(data, numRead,
+					Math.min(1024, data.length - numRead));
+			numRead += 1024;
+		}
+		return complete.digest();
+	}
+
 }
