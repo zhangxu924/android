@@ -8,6 +8,8 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var https = require('https');
+var fs = require('fs');
 
 var record = require('./routes/record');
 var db = require('./lib/db');
@@ -38,6 +40,15 @@ app.get('/users', user.list);
 
 app.post('/record', record.create);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Certifoto server listening on port ' + app.get('port'));
+//var httpServer = http.createServer(app).listen(app.get('port'), function(){
+//  console.log('Certifoto server listening on port ' + app.get('port'));
+//});
+
+var privateKey = fs.readFileSync('resource/key.pem');
+var certificate = fs.readFileSync('resource/cert.pem');
+var credentials = {key: privateKey, cert: certificate};
+
+var httpsServer = https.createServer(credentials, app).listen(app.get('port')+1, function(){
+  console.log('Certifoto server listening on port ' + (app.get('port')+1));
 });
+
