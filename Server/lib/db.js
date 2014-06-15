@@ -4,6 +4,7 @@
 
 var config = require('../config');
 var mongoose = require('mongoose');
+var Record = require('./dao').Record;
 
 /**
  * connect to db
@@ -22,10 +23,15 @@ function connect() {
 /**
  * create a new record
  */
-function newRecord() {
+function newRecord(param, cb) {
+  var record = new Record(param);
 
+  record.save(function(err, obj){
+    cb(err, obj);
+  });
 }
 
 module.exports = {
-    connect: connect
+    connect: connect,
+    newRecord: newRecord
 }

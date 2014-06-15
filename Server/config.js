@@ -4,10 +4,10 @@
 
 module.exports = {
     mongostore: {
-        db: '',
-        host: '',
-        port: '',
-        username: '',
-        password: ''
+        db: 'certifoto',
+        host: 'ds031319.mongolab.com',
+        port: '31319',
+        username: 'test',
+        password: 'test'
     }
 }

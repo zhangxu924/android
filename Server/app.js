@@ -13,7 +13,7 @@ var fs = require('fs');
 
 var record = require('./routes/record');
 var db = require('./lib/db');
-//db.connect();
+db.connect();
 
 var app = express();
 
@@ -39,10 +39,6 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.post('/record', record.create);
-
-//var httpServer = http.createServer(app).listen(app.get('port'), function(){
-//  console.log('Certifoto server listening on port ' + app.get('port'));
-//});
 
 var privateKey = fs.readFileSync('resource/key.pem');
 var certificate = fs.readFileSync('resource/cert.pem');
