@@ -39,6 +39,7 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.post('/record', record.create);
+app.get('/record/:id', record.findRecordById);
 
 var privateKey = fs.readFileSync('resource/key.pem');
 var certificate = fs.readFileSync('resource/cert.pem');
