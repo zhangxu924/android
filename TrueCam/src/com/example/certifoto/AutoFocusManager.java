@@ -1,4 +1,4 @@
-package com.example.certifoto.utils;
+package com.example.certifoto;
 
 import com.example.certifoto.CertifotoActivity;
 

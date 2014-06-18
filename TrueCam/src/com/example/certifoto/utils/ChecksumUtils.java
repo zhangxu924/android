@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 
 import android.util.Log;
 
-public class Checksum {
+public class ChecksumUtils {
 
 	//
 	// returns 0 error
@@ -26,7 +26,7 @@ public class Checksum {
 	public String create(byte[] data) {
 		try {
 			byte[] chk = createChecksum(data);
-			return new String(chk);
+			return new String(chk, "UTF-8");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "create checksum failed";
@@ -37,7 +37,7 @@ public class Checksum {
 		int rc = 0;
 		try {
 			byte[] chk = createChecksum(filename);
-			Log.d("MyCameraApp", "checksum is: " + new String(chk));
+			Log.d("MyCameraApp", "checksum is: " + new String(chk, "UTF-8"));
 			if (new String(chk).equals(checksum)) {
 				System.out.println("Same!");
 				rc = 1;
@@ -56,7 +56,7 @@ public class Checksum {
 		int rc = 0;
 		try {
 			byte[] chk = createChecksum(data);
-			Log.d("MyCameraApp", "checksum is: " + new String(chk));
+			Log.d("MyCameraApp", "checksum is: " + new String(chk, "UTF-8"));
 			if (new String(chk).equals(checksum)) {
 				System.out.println("Same!");
 				rc = 1;

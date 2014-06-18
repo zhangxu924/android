@@ -1,4 +1,4 @@
-package com.example.certifoto.utils;
+package com.example.certifoto;
 
 import android.view.animation.Animation;
 

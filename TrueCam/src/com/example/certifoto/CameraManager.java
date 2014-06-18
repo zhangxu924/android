@@ -1,17 +1,21 @@
-package com.example.certifoto.utils;
+package com.example.certifoto;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Camera;
-import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.OrientationEventListener;
 import android.view.Surface;
@@ -22,7 +26,8 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Toast;
 
-import com.example.certifoto.CertifotoActivity;
+import com.example.certifoto.utils.ChecksumUtils;
+import com.example.certifoto.utils.HttpsUtils;
 import com.example.truecam.R;
 
 
@@ -137,20 +142,21 @@ public class CameraManager {
             }
 
             try {
-				// FileOutputStream fos = new FileOutputStream(pictureFile);
-				// fos.write(data);
-				// fos.close();
-				Checksum cksum = new Checksum();
-				String cks = cksum.create(data);
-				EncrypteUtils.encrypt(data, encrytedFile.getAbsolutePath());
-				EncrypteUtils.decrypt(encrytedFile.getAbsolutePath(),
-						pictureFile.getAbsolutePath());
-					Log.d(TAG, "checksum is: " + cks);
-					if (cksum.check(pictureFile.getAbsolutePath(), cks) == 1) {
-					Log.d(TAG, "file is still valid after decryption");
-				} else {
-					Log.d(TAG, "file is currupted");
-				}
+				FileOutputStream fos = new FileOutputStream(pictureFile);
+				fos.write(data);
+				fos.close();
+				// ChecksumUtils cksum = new ChecksumUtils();
+				// String cks = cksum.create(data);
+				new RecordDataTask().execute(data);
+				// EncrypteUtils.encrypt(data, encrytedFile.getAbsolutePath());
+				// EncrypteUtils.decrypt(encrytedFile.getAbsolutePath(),
+				// pictureFile.getAbsolutePath());
+//					Log.d(TAG, "checksum is: " + cks);
+//					if (cksum.check(pictureFile.getAbsolutePath(), cks) == 1) {
+//					Log.d(TAG, "file is still valid after decryption");
+				// } else {
+				// Log.d(TAG, "file is currupted");
+				// }
                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
                 Uri contentUri = Uri.fromFile(pictureFile);
                 mediaScanIntent.setData(contentUri);
@@ -161,29 +167,11 @@ public class CameraManager {
                 Log.d(TAG, "Error accessing file: " + e.getMessage());
 			} catch (Exception e) {
 				Log.d(TAG, "Error encrypting file: " + e.getMessage());
-            }
-			LocationManager locationManager = (LocationManager) mCertifotoActivity
-					.getSystemService(Context.LOCATION_SERVICE);
-
-			final boolean gpsEnabled = locationManager
-					.isProviderEnabled(LocationManager.GPS_PROVIDER);
-			if (!gpsEnabled) {
-				enableLocationSettings();
-			} else {
-				Location location = locationManager
-						.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-				double latitude = location.getLatitude();
-				double longitude = location.getLongitude();
-				Log.d(TAG, "latitude " + latitude + "  longitude:" + longitude);
+				e.printStackTrace();
 			}
             return pictureFile;
         }
 
-		private void enableLocationSettings() {
-			Intent settingsIntent = new Intent(
-					Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			mCertifotoActivity.startActivity(settingsIntent);
-		}
 
         @Override
         protected void onPostExecute(File pictureFile) {
@@ -204,7 +192,62 @@ public class CameraManager {
 		}
     }
 
-    ;
+
+	private class RecordDataTask extends
+			AsyncTask<byte[], Void, HttpResponse> {
+		@Override
+		protected HttpResponse doInBackground(byte[]... datas) {
+			byte[] data = datas[0];
+			HttpResponse httpResponse = null;
+			ChecksumUtils cksum = new ChecksumUtils();
+			String cks = cksum.create(data);
+			HttpClient httpclient = HttpsUtils.getClient();
+			HttpPost httpPost = new HttpPost("https://112.126.68.2:3001/record");
+			httpPost.addHeader("Content-Type", "application/json");
+			// List<NameValuePair> postParams = new ArrayList<NameValuePair>();
+			String jsonParamsStr = HttpsUtils.buildJsonParams(
+					mCertifotoActivity, cks)
+					.toString();
+			// postParams.add(new BasicNameValuePair("data", jsonParamsStr));
+			try {
+				// UrlEncodedFormEntity entity = new UrlEncodedFormEntity(
+				// postParams);
+				// entity.setContentEncoding(HTTP.UTF_8);
+				httpPost.setEntity(new StringEntity(jsonParamsStr));
+				Log.d(TAG, "ready to send https post request");
+				httpResponse = httpclient.execute(httpPost);
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			return httpResponse;
+
+		}
+
+		@Override
+		protected void onPostExecute(HttpResponse httpResponse) {
+			Log.d(TAG, "sending https post request finished");
+			if (httpResponse == null) {
+				Log.d("RESULT", "httpresponse is null");
+			} else {
+				try {
+					InputStream inputStream = httpResponse.getEntity()
+							.getContent();
+					String result = "";
+
+					if (inputStream != null) {
+						result = HttpsUtils
+								.convertInputStreamToString(inputStream);
+					} else {
+						result = "Did not work!";
+					}
+					Log.d(TAG, "httpresponse: " + result);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+	}
 
     private Camera.PictureCallback pictureCallback = new Camera.PictureCallback() {
 
