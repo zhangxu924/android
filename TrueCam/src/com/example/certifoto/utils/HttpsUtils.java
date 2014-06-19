@@ -30,7 +30,7 @@ public class HttpsUtils {
 	
 
 
-	public static HttpClient getClient() {
+	public static HttpClient getClient(Context context) {
 		BasicHttpParams params = new BasicHttpParams();
 		HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
 		HttpProtocolParams.setContentCharset(params,
@@ -40,8 +40,10 @@ public class HttpsUtils {
 		SchemeRegistry schReg = new SchemeRegistry();
 		// schReg.register(new Scheme("http",
 		// PlainSocketFactory.getSocketFactory(), 80));
-		schReg.register(new Scheme("https", SSLTrustAllSocketFactory
-				.getSocketFactory(), 443));
+		// schReg.register(new Scheme("https", SSLTrustAllSocketFactory
+		// .getSocketFactory(), 443));
+		schReg.register(new Scheme("https", SSLCustomSocketFactory
+				.getSocketFactory(context), 443));
 		ClientConnectionManager connMgr = new ThreadSafeClientConnManager(
 				params, schReg);
 		return new DefaultHttpClient(connMgr, params);

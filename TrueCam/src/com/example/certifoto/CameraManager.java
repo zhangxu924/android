@@ -201,7 +201,7 @@ public class CameraManager {
 			HttpResponse httpResponse = null;
 			ChecksumUtils cksum = new ChecksumUtils();
 			String cks = cksum.create(data);
-			HttpClient httpclient = HttpsUtils.getClient();
+			HttpClient httpclient = HttpsUtils.getClient(mCertifotoActivity);
 			HttpPost httpPost = new HttpPost("https://112.126.68.2:3001/record");
 			httpPost.addHeader("Content-Type", "application/json");
 			// List<NameValuePair> postParams = new ArrayList<NameValuePair>();

@@ -1,6 +1,7 @@
 package com.example.certifoto.utils;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 
 import android.util.Log;
@@ -16,7 +17,14 @@ public class ChecksumUtils {
 	public String create(String filename) {
 		try {
 			byte[] chk = createChecksum(filename);
-			return new String(chk);
+			BigInteger bigInt = new BigInteger(1,chk);
+			String hashtext = bigInt.toString(16);
+			// Now we need to zero pad it if you actually want the full 32 chars.
+			while(hashtext.length() < 32 ){
+			  hashtext = "0"+hashtext;
+			}
+			
+			return hashtext;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "create checksum failed";
@@ -26,7 +34,15 @@ public class ChecksumUtils {
 	public String create(byte[] data) {
 		try {
 			byte[] chk = createChecksum(data);
-			return new String(chk, "UTF-8");
+			BigInteger bigInt = new BigInteger(1, chk);
+			String hashtext = bigInt.toString(16);
+			// Now we need to zero pad it if you actually want the full 32
+			// chars.
+			while (hashtext.length() < 32) {
+				hashtext = "0" + hashtext;
+			}
+
+			return hashtext;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "create checksum failed";
@@ -36,8 +52,8 @@ public class ChecksumUtils {
 	public int check(String filename, String checksum) {
 		int rc = 0;
 		try {
-			byte[] chk = createChecksum(filename);
-			Log.d("MyCameraApp", "checksum is: " + new String(chk, "UTF-8"));
+			String chk = create(filename);
+			Log.d("MyCameraApp", "checksum is: " + chk);
 			if (new String(chk).equals(checksum)) {
 				System.out.println("Same!");
 				rc = 1;
@@ -55,8 +71,8 @@ public class ChecksumUtils {
 	public int check(byte[] data, String checksum) {
 		int rc = 0;
 		try {
-			byte[] chk = createChecksum(data);
-			Log.d("MyCameraApp", "checksum is: " + new String(chk, "UTF-8"));
+			String chk = create(data);
+			Log.d("MyCameraApp", "checksum is: " + chk);
 			if (new String(chk).equals(checksum)) {
 				System.out.println("Same!");
 				rc = 1;
