@@ -8,7 +8,7 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.truecam.R;
+import com.example.certifoto.R;
 
 
 public class SSLCustomSocketFactory extends SSLSocketFactory {
