@@ -87,16 +87,19 @@ public class CameraUtils {
     double targetRatio=(double)width / height;
     Camera.Size optimalSize=null;
     double minDiff=Double.MAX_VALUE;
-
+		int actualHeight = 0;
+		int actualWidth = 0;
     if (displayOrientation == 90 || displayOrientation == 270) {
       targetRatio=(double)height / width;
+			actualHeight = width;
+			actualWidth = height;
     }
 
     List<Size> sizes=parameters.getSupportedPreviewSizes();
 
 		Collections.sort(sizes, Collections.reverseOrder(new SizeComparator()));
     for (Size size : sizes) {
-			if (size.width == width && size.height == height) {
+			if (size.width == actualWidth && size.height == actualHeight) {
 				Log.d(TAG,
 						"found resolution exactly matching the screen resolution, width: "
 								+ size.width + "  height: " + size.height);
