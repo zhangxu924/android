@@ -8,8 +8,6 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.certifoto.R;
-
 
 
 public class CertifotoActivity extends Activity implements
@@ -17,7 +15,7 @@ public class CertifotoActivity extends Activity implements
     public static final String TAG = "mycamera";
 
     private ImageView ivShutter;
-	// private ImageView ivCameraSwitcher;
+	private ImageView ivCameraSwitcher;
     private CameraManager cameraManager;
     private SurfaceView previewLayout;
 
@@ -27,11 +25,11 @@ public class CertifotoActivity extends Activity implements
 		setContentView(R.layout.certifoto_layout);
 
         ivShutter = (ImageView) findViewById(R.id.mc_shutter);
-		// ivCameraSwitcher = (ImageView) findViewById(R.id.mc_facing_switcher);
+		ivCameraSwitcher = (ImageView) findViewById(R.id.mc_facing_switcher);
         previewLayout = (SurfaceView) findViewById(R.id.mc_preview);
 
         ivShutter.setOnClickListener(this);
-		// ivCameraSwitcher.setOnClickListener(this);
+		ivCameraSwitcher.setOnClickListener(this);
 
         cameraManager = new CameraManager(this, previewLayout, btAnimation);
     }
@@ -62,10 +60,10 @@ public class CertifotoActivity extends Activity implements
                 cameraManager.takePicture();
 
                 break;
-			// case R.id.mc_facing_switcher:
-			// cameraManager.switchCamera();
+		case R.id.mc_facing_switcher:
+			cameraManager.switchCamera();
 
-		// break;
+			break;
         }
     }
 
@@ -75,7 +73,7 @@ public class CertifotoActivity extends Activity implements
         @Override
         public void executeAnimation(Animation animation) {
             ivShutter.startAnimation(animation);
-			// ivCameraSwitcher.startAnimation(animation);
+			ivCameraSwitcher.startAnimation(animation);
         }
     };
 }
