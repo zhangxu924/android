@@ -28,7 +28,6 @@ import android.widget.Toast;
 
 import com.example.certifoto.utils.ChecksumUtils;
 import com.example.certifoto.utils.HttpsUtils;
-import com.example.truecam.R;
 
 
 public class CameraManager {
@@ -53,6 +52,8 @@ public class CameraManager {
     private MyCameraButtonAnimation buttonAnimation;
 
     private SurfaceView surfaceView;
+    
+    private String pictureFileName;
 
     public CameraManager(CertifotoActivity cameraActivity, SurfaceView surfaceView, MyCameraButtonAnimation buttonAnimation) {
 		mCertifotoActivity = cameraActivity;
@@ -128,9 +129,9 @@ public class CameraManager {
         }
     }
 
-    private class PicSaveTask extends AsyncTask<byte[], Void, File> {
+	private class PicSaveTask extends AsyncTask<byte[], Void, HttpResponse> {
         @Override
-        protected File doInBackground(byte[]... datas) {
+		protected HttpResponse doInBackground(byte[]... datas) {
             byte[] data = datas[0];
             File pictureFile = null;
 			File encrytedFile = null;
@@ -147,7 +148,6 @@ public class CameraManager {
 				fos.close();
 				// ChecksumUtils cksum = new ChecksumUtils();
 				// String cks = cksum.create(data);
-				new RecordDataTask().execute(data);
 				// EncrypteUtils.encrypt(data, encrytedFile.getAbsolutePath());
 				// EncrypteUtils.decrypt(encrytedFile.getAbsolutePath(),
 				// pictureFile.getAbsolutePath());
@@ -161,6 +161,7 @@ public class CameraManager {
                 Uri contentUri = Uri.fromFile(pictureFile);
                 mediaScanIntent.setData(contentUri);
 				mCertifotoActivity.sendBroadcast(mediaScanIntent);
+				pictureFileName = pictureFile.getAbsolutePath();
             } catch (FileNotFoundException e) {
                 Log.d(TAG, "File not found: " + e.getMessage());
             } catch (IOException e) {
@@ -169,46 +170,18 @@ public class CameraManager {
 				Log.d(TAG, "Error encrypting file: " + e.getMessage());
 				e.printStackTrace();
 			}
-            return pictureFile;
-        }
-
-
-        @Override
-        protected void onPostExecute(File pictureFile) {
-            super.onPostExecute(pictureFile);
-			mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
-					View.INVISIBLE);
-			Toast.makeText(mCertifotoActivity,
-					"picture saved in local storage",
-					Toast.LENGTH_SHORT).show();
-			Log.d(TAG, "the picture saved in " + pictureFile.getAbsolutePath());
-        }
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
-					View.VISIBLE);
-		}
-    }
-
-
-	private class RecordDataTask extends
-			AsyncTask<byte[], Void, HttpResponse> {
-		@Override
-		protected HttpResponse doInBackground(byte[]... datas) {
-			byte[] data = datas[0];
 			HttpResponse httpResponse = null;
 			ChecksumUtils cksum = new ChecksumUtils();
 			String cks = cksum.create(data);
 			HttpClient httpclient = HttpsUtils.getClient(mCertifotoActivity);
 			HttpPost httpPost = new HttpPost("https://112.126.68.2:3001/record");
 			httpPost.addHeader("Content-Type", "application/json");
-			// List<NameValuePair> postParams = new ArrayList<NameValuePair>();
+			// List<NameValuePair> postParams = new
+			// ArrayList<NameValuePair>();
 			String jsonParamsStr = HttpsUtils.buildJsonParams(
-					mCertifotoActivity, cks)
-					.toString();
-			// postParams.add(new BasicNameValuePair("data", jsonParamsStr));
+					mCertifotoActivity, cks).toString();
+			// postParams.add(new BasicNameValuePair("data",
+			// jsonParamsStr));
 			try {
 				// UrlEncodedFormEntity entity = new UrlEncodedFormEntity(
 				// postParams);
@@ -221,11 +194,16 @@ public class CameraManager {
 				ex.printStackTrace();
 			}
 			return httpResponse;
+        }
 
-		}
 
-		@Override
+        @Override
 		protected void onPostExecute(HttpResponse httpResponse) {
+            super.onPostExecute(httpResponse);
+			// releaseCamera();
+			mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
+					View.INVISIBLE);
+			Log.d(TAG, "the picture saved in " + pictureFileName);
 			Log.d(TAG, "sending https post request finished");
 			if (httpResponse == null) {
 				Log.d("RESULT", "httpresponse is null");
@@ -233,21 +211,39 @@ public class CameraManager {
 				try {
 					InputStream inputStream = httpResponse.getEntity()
 							.getContent();
-					String result = "";
 
 					if (inputStream != null) {
-						result = HttpsUtils
+						String mResponse = HttpsUtils
 								.convertInputStreamToString(inputStream);
+						Intent showResultIntent = new Intent(
+								mCertifotoActivity, ResultPicActivity.class);
+						Log.d(TAG, "httpresponse: " + mResponse);
+						showResultIntent.putExtra(Constants.EXTRA_PIC_FILE,
+								pictureFileName);
+						showResultIntent.putExtra(Constants.EXTRA_RESPONSE,
+								mResponse);
+						showResultIntent
+								.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+						showResultIntent
+								.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+						mCertifotoActivity.startActivity(showResultIntent);
 					} else {
-						result = "Did not work!";
+						String mResponse = "Did not work!";
 					}
-					Log.d(TAG, "httpresponse: " + result);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
 			}
+        }
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
+					View.VISIBLE);
 		}
-	}
+    }
 
     private Camera.PictureCallback pictureCallback = new Camera.PictureCallback() {
 
@@ -290,11 +286,11 @@ public class CameraManager {
             } else {  // back-facing camera
                 rotation = (info.orientation + fixedOrientation) % 360;
             }
-
+            if (camera!=null){
             Camera.Parameters cameraParameters = camera.getParameters();
             cameraParameters.setRotation(rotation);
             camera.setParameters(cameraParameters);
-
+            }
 
 
             if (orientation > 180 && lastAutofocusOrientation == 0) {
