@@ -26,7 +26,39 @@
       <file leaf-file-name="db.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/db.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="20" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="179" max-vertical-offset="630">
+            <state line="45" column="0" selection-start="1167" selection-end="1167" vertical-scroll-proportion="0.0" vertical-offset="604" max-vertical-offset="1938">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strategy.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/passport-saml/strategy.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="54" column="0" selection-start="1264" selection-end="1264" vertical-scroll-proportion="0.0" vertical-offset="757" max-vertical-offset="1411">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="authenticate.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/passport/lib/middleware/authenticate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="227" column="0" selection-start="8473" selection-end="8473" vertical-scroll-proportion="0.0" vertical-offset="3851" max-vertical-offset="5372">
+              <folding>
+                <element signature="e#9772#10108#0" expanded="false" />
+                <element signature="e#10499#10950#0" expanded="false" />
+                <element signature="e#11321#11346#0" expanded="false" />
+                <element signature="e#11732#11835#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="saml.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/passport-saml/saml.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="220" column="0" selection-start="7681" selection-end="7681" vertical-scroll-proportion="0.0" vertical-offset="3583" max-vertical-offset="4522">
               <folding />
             </state>
           </provider>
@@ -35,7 +67,7 @@
       <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="24" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="270">
+            <state line="6" column="18" selection-start="84" selection-end="93" vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="510">
               <folding />
             </state>
           </provider>
@@ -44,16 +76,7 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="44" selection-start="969" selection-end="969" vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="855">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="record.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/record.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="47" selection-start="2841" selection-end="2841" vertical-scroll-proportion="1.2038044" vertical-offset="1387" max-vertical-offset="2025">
+            <state line="77" column="20" selection-start="1812" selection-end="1812" vertical-scroll-proportion="0.0" vertical-offset="1011" max-vertical-offset="1717">
               <folding />
             </state>
           </provider>
@@ -62,16 +85,16 @@
       <file leaf-file-name="package.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="11" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="300">
+            <state line="17" column="21" selection-start="357" selection-end="357" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="425">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <file leaf-file-name="user.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="8" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="195">
+            <state line="104" column="67" selection-start="2465" selection-end="2465" vertical-scroll-proportion="0.66225165" vertical-offset="1368" max-vertical-offset="2040">
               <folding />
             </state>
           </provider>
@@ -80,7 +103,7 @@
       <file leaf-file-name="dao.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/dao.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="4" selection-start="453" selection-end="453" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="645">
+            <state line="28" column="65" selection-start="895" selection-end="895" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
               <folding />
             </state>
           </provider>
@@ -96,22 +119,24 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="/media/Seconde/git/Certifoto/Server/lib/dao.js" />
         <option value="/media/Seconde/git/Certifoto/Server/app.js" />
-        <option value="$PROJECT_DIR$/config.js" />
-        <option value="$PROJECT_DIR$/lib/db.js" />
-        <option value="$PROJECT_DIR$/lib/dao.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/record.js" />
+        <option value="$PROJECT_DIR$/lib/dao.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/config.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/lib/db.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/user.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="63" />
-    <option name="y" value="24" />
-    <option name="width" value="1260" />
-    <option name="height" value="708" />
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1928" />
+    <option name="height" value="1088" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -167,7 +192,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
+              <option name="myItemId" value="node_modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -185,6 +210,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="passport-saml" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -199,7 +242,7 @@
     <property name="options.searchVisible" value="true" />
     <property name="SearchEverywhereHistory" value="" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="C:/Installations/nodejs/node.exe" />
+    <property name="last_opened_file_path" value="C:/_Work/git/passport-saml" />
     <property name="LayoutCode.rearrangeEntriesJavaScript" value="false" />
   </component>
   <component name="RecentsManager">
@@ -275,18 +318,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="63" y="24" width="1260" height="708" extended-state="0" />
+    <frame x="-4" y="-4" width="1928" height="1088" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26550078" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30278233" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19589257" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38170347" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39770868" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3535188" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33543637" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -312,31 +355,75 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/node_modules/passport-saml/lib/passport-saml/strategy.js</url>
+          <line>25</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/node_modules/passport-saml/lib/passport-saml/strategy.js</url>
+          <line>30</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/node_modules/passport-saml/lib/passport-saml/strategy.js</url>
+          <line>67</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/node_modules/passport-saml/lib/passport-saml/strategy.js</url>
+          <line>69</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/node_modules/passport-saml/lib/passport-saml/strategy.js</url>
+          <line>71</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/node_modules/passport-saml/lib/passport-saml/strategy.js</url>
+          <line>59</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/node_modules/passport-saml/lib/passport-saml/strategy.js</url>
+          <line>78</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/lib/db.js</url>
+          <line>80</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/lib/passport-saml/saml.js</url>
+          <line>181</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/lib/passport-saml/saml.js</url>
+          <line>186</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/lib/passport-saml/saml.js</url>
+          <line>220</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/lib/db.js</url>
+          <line>45</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="74" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="20" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="24" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="270">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="27" selection-start="857" selection-end="857" vertical-scroll-proportion="0.0" vertical-offset="555" max-vertical-offset="840">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="11" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="300">
@@ -519,11 +606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="584" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resource/cert.pem">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="550" />
@@ -534,56 +616,168 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="550" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="24" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="52" column="7" selection-start="854" selection-end="854" vertical-scroll-proportion="0.33216783" vertical-offset="694" max-vertical-offset="3247" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/db.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/passport-localapikey/node_modules/pkginfo/lib/pkginfo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="20" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="179" max-vertical-offset="630">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2329">
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/passport-localapikey/lib/passport-localapikey/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="16" selection-start="169" selection-end="176" vertical-scroll-proportion="0.50898206" vertical-offset="0" max-vertical-offset="408">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/dao.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/passport-localapikey/lib/passport-localapikey/strategy.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="4" selection-start="453" selection-end="453" vertical-scroll-proportion="0.0" vertical-offset="151" max-vertical-offset="731">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="11" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="300">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="8" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="44" selection-start="969" selection-end="969" vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="855">
+        <state line="24" column="25" selection-start="814" selection-end="831" vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="1904">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/record.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="47" selection-start="2841" selection-end="2841" vertical-scroll-proportion="1.2038044" vertical-offset="1387" max-vertical-offset="2025">
+        <state line="34" column="19" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2295">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/passport-localapikey/node_modules/passport/lib/passport/http/request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="3" selection-start="1848" selection-end="1848" vertical-scroll-proportion="0.61966604" vertical-offset="1060" max-vertical-offset="1649">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="2" selection-start="116" selection-end="116" vertical-scroll-proportion="0.22077923" vertical-offset="0" max-vertical-offset="539">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/passport/lib/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/passport/lib/authenticator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="169" column="3" selection-start="4401" selection-end="4401" vertical-scroll-proportion="0.0" vertical-offset="2655" max-vertical-offset="8041">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/passport/lib/middleware/initialize.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="0" selection-start="2115" selection-end="2115" vertical-scroll-proportion="0.69582504" vertical-offset="687" max-vertical-offset="1190">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/express/node_modules/connect/lib/proto.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="193" column="0" selection-start="5276" selection-end="5276" vertical-scroll-proportion="0.33200794" vertical-offset="3029" max-vertical-offset="3995">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="163" column="0" selection-start="3567" selection-end="3567" vertical-scroll-proportion="0.0" vertical-offset="2560" max-vertical-offset="5559">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="21" selection-start="357" selection-end="357" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="18" selection-start="84" selection-end="93" vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/node_modules/mpromise/lib/promise.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="0" selection-start="2365" selection-end="2365" vertical-scroll-proportion="0.0" vertical-offset="1471" max-vertical-offset="7922">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/xml2js/lib/xml2js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="194" column="0" selection-start="5789" selection-end="5789" vertical-scroll-proportion="0.0" vertical-offset="3141" max-vertical-offset="3859">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="20" selection-start="1812" selection-end="1812" vertical-scroll-proportion="0.0" vertical-offset="1062" max-vertical-offset="1717">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/dao.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="65" selection-start="895" selection-end="895" vertical-scroll-proportion="0.0" vertical-offset="229" max-vertical-offset="833">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/passport-saml/saml.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="220" column="0" selection-start="7681" selection-end="7681" vertical-scroll-proportion="0.0" vertical-offset="3583" max-vertical-offset="4522">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="0" selection-start="1167" selection-end="1167" vertical-scroll-proportion="0.0" vertical-offset="604" max-vertical-offset="1938">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/passport-saml/strategy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="0" selection-start="1264" selection-end="1264" vertical-scroll-proportion="0.0" vertical-offset="757" max-vertical-offset="1411">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/passport/lib/middleware/authenticate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="227" column="0" selection-start="8473" selection-end="8473" vertical-scroll-proportion="0.0" vertical-offset="3851" max-vertical-offset="5372">
+          <folding>
+            <element signature="e#9772#10108#0" expanded="false" />
+            <element signature="e#10499#10950#0" expanded="false" />
+            <element signature="e#11321#11346#0" expanded="false" />
+            <element signature="e#11732#11835#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="104" column="67" selection-start="2465" selection-end="2465" vertical-scroll-proportion="0.66225165" vertical-offset="1368" max-vertical-offset="2040">
           <folding />
         </state>
       </provider>

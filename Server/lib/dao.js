@@ -33,6 +33,12 @@ var RecordSchema = new Schema({
   trustLvl: String                    // the level of trust, 5 digitals (0-9)
 }, { collection: 'test' });
 
+var UserSchema = Schema({
+  email: {type: String, required: true, unique: true},
+  token: {type: String, required: true, unique: true}
+}, { collection : 'user' });
+
 module.exports = {
-  Record: mongoose.model('Record', RecordSchema)
+  Record: mongoose.model('Record', RecordSchema),
+  User: mongoose.model('User', UserSchema)
 }
