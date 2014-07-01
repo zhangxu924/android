@@ -21,7 +21,6 @@ import android.view.OrientationEventListener;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Toast;
@@ -201,8 +200,8 @@ public class CameraManager {
 		protected void onPostExecute(HttpResponse httpResponse) {
             super.onPostExecute(httpResponse);
 			// releaseCamera();
-			mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
-					View.INVISIBLE);
+			// mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
+			// View.INVISIBLE);
 			Log.d(TAG, "the picture saved in " + pictureFileName);
 			Log.d(TAG, "sending https post request finished");
 			if (httpResponse == null) {
@@ -240,8 +239,8 @@ public class CameraManager {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
-					View.VISIBLE);
+			// mCertifotoActivity.findViewById(R.id.mc_progressbar).setVisibility(
+			// View.VISIBLE);
 		}
     }
 

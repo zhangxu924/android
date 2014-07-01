@@ -1,42 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-	 >
-	 
-     <SurfaceView
-        android:id="@+id/mc_preview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <ImageView
-        android:id="@+id/mc_shutter"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
-        android:src="@drawable/shutter" />
-
-    <ImageView
-        android:id="@+id/mc_facing_switcher"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/camera_switch" 
-        android:visibility="visible"></ImageView>
-        
-    <ProgressBar
-        android:id="@+id/mc_progressbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false" 
-        android:visibility="invisible"
-        android:layout_centerInParent="true">
-    </ProgressBar>"
-      
- </RelativeLayout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/container"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".CertifotoActivity"
+	tools:ignore="MergeRootFrame"/>
